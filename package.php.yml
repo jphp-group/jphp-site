@@ -5,7 +5,6 @@ deps:
   jphp-zend-ext: '*'
   jphp-httpserver-ext: '*'
   twig: '*'
-  jphp-markdown-ext: '*'
   jphp-yaml-ext: '*'
 plugins:
 - App
