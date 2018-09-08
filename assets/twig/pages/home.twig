@@ -1,0 +1,73 @@
+<center>
+    <h1>jPHP</h1>
+    <h3>An alternative to PHP on the JVM</h3>
+</center>
+
+<br><br>
+<h2 class="text-center" style="padding: 15px">Amazing Features</h2>
+
+<div class="card-group">
+    <div class="card">
+        <i class="fas fa-bolt fa-4x text-center" style="padding-top: 15px"></i>
+        <div class="card-body">
+            <h5 class="card-title text-center">High Performance</h5>
+            <p class="card-text">JIT + Optimizer = 1x - 10x faster PHP 5.6</p>
+        </div>
+    </div>
+    <div class="card">
+        <i class="far fa-gem fa-4x text-center" style="padding-top: 15px"></i>
+        <div class="card-body">
+            <h5 class="card-title text-center">New API</h5>
+            <p class="card-text">A better std library, more elegant and powerful</p>
+        </div>
+    </div>
+    <div class="card">
+        <i class="fas fa-cogs fa-4x text-center" style="padding-top: 15px"></i>
+        <div class="card-body">
+            <h5 class="card-title text-center">GUI, Game, Android</h5>
+            <p class="card-text">Use the php language not only for web apps</p>
+        </div>
+    </div>
+</div>
+
+<br><br>
+<center>
+    <h2 class="text-center" style="padding: 15px">JPPM</h2>
+    <h5>JPPM is a packager manager for JPHP like npm or composer. JPPM will help you to build and run jphp applications or write new packages.</h5>
+    <br>
+    <a href="https://github.com/jphp-group/jphp/releases" class="btn btn-outline-primary btn-lg active text-center" role="button" aria-pressed="true">Download JPPM</a>
+</center>
+
+<br><br>
+<h2 class="text-center" style="padding: 15px">Examples</h2>
+
+<div class="row">
+  <div class="col-4">
+    <div class="list-group" id="list-tab" role="tablist">
+      <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" href="#api" role="tab" aria-controls="api">New API</a>
+      <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#multi-threading" role="tab" aria-controls="multi-threading">Multi-threading</a>
+      <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="#unicode-strings" role="tab" aria-controls="messages">Unicode Strings</a>
+      <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#gui" role="tab" aria-controls="settings">GUI Application</a>
+      <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#web" role="tab" aria-controls="settings">Web Server</a>
+    </div>
+  </div>
+  <div class="col-8">
+    <div class="tab-content" id="nav-tabContent">
+      <div class="tab-pane fade show active" id="api" role="tabpanel" aria-labelledby="list-home-list">{{api}}</div>
+      <div class="tab-pane fade" id="multi-threading" role="tabpanel" aria-labelledby="list-profile-list">{{multi_threading}}</div>
+      <div class="tab-pane fade" id="unicode-strings" role="tabpanel" aria-labelledby="list-messages-list">{{unicode_strings}}</div>
+      <div class="tab-pane fade" id="gui" role="tabpanel" aria-labelledby="list-settings-list">{{gui}}</div>
+      <div class="tab-pane fade" id="web" role="tabpanel" aria-labelledby="list-settings-list">{{web}}</div>
+    </div>
+  </div>
+</div>
+
+
+<script src="/assets/main.js"></script>
+
+<style>
+.tab-pane {
+    width: 100%;
+    height: 245px;
+}
+</style>
