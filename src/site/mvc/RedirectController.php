@@ -2,8 +2,6 @@
 
 namespace site\mvc;
 
-use php\http\HttpRedirectHandler;
-
 class RedirectController extends AbstractController
 {
     /**
@@ -40,8 +38,7 @@ class RedirectController extends AbstractController
      */
     public function render(): string
     {
-        (new HttpRedirectHandler($this->new))->__invoke($this->_REQ, $this->_RES);
-
+        $this->redirect($this->new);
         return null;
     }
 

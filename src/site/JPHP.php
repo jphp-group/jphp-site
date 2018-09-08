@@ -6,10 +6,15 @@ use php\http\HttpResourceHandler;
 use php\http\HttpServer;
 use php\http\HttpServerRequest;
 use php\http\HttpServerResponse;
+use php\lib\fs;
+use site\classes\API;
 use site\classes\TemplateEngine;
 use site\mvc\AssetsController;
 use site\mvc\ControllerContainer;
+use site\mvc\DashboardController;
 use site\mvc\HomeController;
+use site\mvc\LoginController;
+use site\mvc\ProfileController;
 use site\mvc\RedirectController;
 
 use std;
@@ -32,6 +37,11 @@ class JPHP
     private $server;
 
     /**
+     * @var string
+     */
+    private $serverUrl;
+
+    /**
      * @var ControllerContainer
      */
     private $controllers;
@@ -45,9 +55,12 @@ class JPHP
 
         $this->controllers->register(new AssetsController());
         $this->controllers->register(new HomeController());
+        $this->controllers->register(new LoginController());
+        $this->controllers->register(new ProfileController());
 
         // alias
         $this->controllers->register(new RedirectController("/favicon.ico", "/assets/jphp.ico"));
+        $this->controllers->register(new RedirectController("/hub/logout", "/hub/login?logout=true"));
     }
 
     public function start()
@@ -57,7 +70,9 @@ class JPHP
         $port = $config['port'] ?? 5000;
         $host = $config['host'] ?? "localhost";
 
-        echo "Starting server at http://{$host}:$port/\n";
+        $this->serverUrl = "http://{$host}:$port/";
+
+        echo "Starting server at {$this->serverUrl}\n";
 
         $this->server = new HttpServer($port, $host);
         $this->server->setErrorHandler(function (\Exception $e) {
@@ -65,7 +80,7 @@ class JPHP
         });
 
         $this->server->get("/**", function (HttpServerRequest $req, HttpServerResponse $res) {
-            echo "new connection to {$req->path()} from {$req->localAddress()} \n";
+            echo "new connection to {$req->path()} from {$req->remoteAddress()} \n";
 
             $res->charsetEncoding("UTF-8");
             $res->header("Server", "JPHP " . JPHP_VERSION);
@@ -91,5 +106,13 @@ class JPHP
     public static function getTemplateEngine(): TemplateEngine
     {
         return static::$instance->templateEngine;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getServerUrl()
+    {
+        return $this->serverUrl;
     }
 }

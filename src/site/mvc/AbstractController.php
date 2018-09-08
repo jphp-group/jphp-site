@@ -4,9 +4,11 @@ namespace site\mvc;
 
 
 use php\http\HttpAbstractHandler;
+use php\http\HttpRedirectHandler;
 use php\http\HttpServerRequest;
 use php\http\HttpServerResponse;
 use php\lib\str;
+use site\classes\API;
 use site\JPHP;
 
 use php\time\TimeFormat;
@@ -49,15 +51,29 @@ abstract class AbstractController
     {
         $this->_REQ = $request;
         $this->_RES = $response;
+
         try {
             if ($this->useLayout())
-                $this->_RES->body(str::replace(JPHP::getTemplateEngine()->render("layout", [
-                    "year" => (Time::now())->year()
+            {
+                $this->_RES->body($template = str::replace(JPHP::getTemplateEngine()->render("layout", [
+                    "year" => (Time::now())->year(),
+                    "title" => $this->getTitle()
                 ]), "%content%", $this->render()));
-            else $this->_RES->body($this->render());
+            } else $this->_RES->body($this->render());
         } catch (\Exception $e)
         {
-
+            echo $e->getMessage() . "\n";
         }
+    }
+
+    public function redirect(string $url)
+    {
+        $this->_RES->status(302);
+        $this->_RES->header("Location", $url);
+    }
+
+    public function getTitle() : string
+    {
+        return "JPHP";
     }
 }

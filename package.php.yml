@@ -6,6 +6,9 @@ deps:
   jphp-httpserver-ext: '*'
   twig: '*'
   jphp-yaml-ext: '*'
+  jphp-httpclient-ext: '*'
+  jphp-xml-ext: '*'
+  jphp-jsoup-ext: '*'
 plugins:
 - App
 sources:
