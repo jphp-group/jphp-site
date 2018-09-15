@@ -1,2 +1,7 @@
 host: "localhost"
 port: 5000
+
+docs:
+   github:
+      repo: "jphp-group/jphp-docs"
+      branch: "master"

@@ -31,13 +31,22 @@ abstract class AbstractController
      */
     abstract public function render() : string;
 
+    /**
+     * @return string
+     */
     abstract public function getPath() : string;
 
+    /**
+     * @return bool
+     */
     public function useRegexp() : bool
     {
         return true;
     }
 
+    /**
+     * @return bool
+     */
     public function useLayout() : bool
     {
         return true;
@@ -56,9 +65,10 @@ abstract class AbstractController
             if ($this->useLayout())
             {
                 $this->_RES->body($template = str::replace(JPHP::getTemplateEngine()->render("layout", [
-                    "year" => (Time::now())->year(),
-                    "title" => $this->getTitle()
-                ]), "%content%", $this->render()));
+                    "year"    => (Time::now())->year(),
+                    "title"   => $this->getTitle(),
+                    "url"     => $request->path()
+                ]), "%content%",$this->render()));
             } else $this->_RES->body($this->render());
         } catch (\Exception $e)
         {
@@ -66,12 +76,18 @@ abstract class AbstractController
         }
     }
 
+    /**
+     * @param string $url
+     */
     public function redirect(string $url)
     {
         $this->_RES->status(302);
         $this->_RES->header("Location", $url);
     }
 
+    /**
+     * @return string
+     */
     public function getTitle() : string
     {
         return "JPHP";

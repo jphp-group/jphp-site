@@ -9,6 +9,7 @@ deps:
   jphp-httpclient-ext: '*'
   jphp-xml-ext: '*'
   jphp-jsoup-ext: '*'
+  jphp-markdown-ext: '*'
 plugins:
 - App
 sources:

@@ -14,19 +14,30 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.1/ace.js" type="text/javascript" charset="utf-8"></script>
 </head>
 <body>
-    <nav class="navbar navbar-light bg-light">
+    <nav class="navbar navbar-light bg-light navbar-expand-lg">
         <div class="container">
-            <a class="navbar-brand" href="/">
-                {{ title }}
+            <a class="navbar-brand">
+                JPHP
             </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item {{ url == '/' ? 'active' : '' }}">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item {{ url == '/docs' ? 'active' : '' }}">
+                        <a class="nav-link" href="/docs">Documentation</a>
+                    </li>
+                </ul>
+            </div>
             <span class="navbar-text">
                 <a class="btn btn-light" href="https://hub.develnext.org/">DevelHub <i class="fab fa-hubspot"></i></a>
                 <a class="btn btn-light" href="https://github.com/jphp-group/">Github <i class="fab fa-github"></i></a>
             </span>
         </div>
     </nav>
-
-    <br><br>
     %content%
     <br>
     <h6 class="text-center" style="padding: 15px">JPHP Group © 2015 - {{year}}</h6>

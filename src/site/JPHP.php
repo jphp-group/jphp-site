@@ -12,6 +12,7 @@ use site\classes\TemplateEngine;
 use site\mvc\AssetsController;
 use site\mvc\ControllerContainer;
 use site\mvc\DashboardController;
+use site\mvc\DocumentationController;
 use site\mvc\HomeController;
 use site\mvc\LoginController;
 use site\mvc\ProfileController;
@@ -46,6 +47,11 @@ class JPHP
      */
     private $controllers;
 
+    /**
+     * @var array
+     */
+    private $config;
+
     public function __construct()
     {
         static::$instance = $this;
@@ -55,20 +61,18 @@ class JPHP
 
         $this->controllers->register(new AssetsController());
         $this->controllers->register(new HomeController());
-        $this->controllers->register(new LoginController());
-        $this->controllers->register(new ProfileController());
+        $this->controllers->register(new DocumentationController());
 
         // alias
         $this->controllers->register(new RedirectController("/favicon.ico", "/assets/jphp.ico"));
-        $this->controllers->register(new RedirectController("/hub/logout", "/hub/login?logout=true"));
     }
 
     public function start()
     {
-        $config = fs::parseAs("./server.yml", "yaml");
+        $this->config = fs::parseAs("./server.yml", "yaml");
 
-        $port = $config['port'] ?? 5000;
-        $host = $config['host'] ?? "localhost";
+        $port = $this->config['port'] ?? 5000;
+        $host = $this->config['host'] ?? "localhost";
 
         $this->serverUrl = "http://{$host}:$port/";
 
@@ -114,5 +118,13 @@ class JPHP
     public function getServerUrl()
     {
         return $this->serverUrl;
+    }
+
+    /**
+     * @return array
+     */
+    public function getConfig(): array
+    {
+        return $this->config;
     }
 }

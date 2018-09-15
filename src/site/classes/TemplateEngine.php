@@ -3,6 +3,7 @@
 namespace site\classes;
 
 use twig\TwigEngine;
+use twig\TwigExtension;
 use twig\TwigStreamLoader;
 
 class TemplateEngine
@@ -18,6 +19,14 @@ class TemplateEngine
 
         $this->loader->setPrefix("./assets/twig/");
         $this->loader->setSuffix(".twig");
+
+        $twigExtension = new TwigExtension();
+
+        $twigExtension->addFunction("href", function (array $args) {
+            return $args["url"];
+        }, ['url']);
+
+        $this->twig->addExtension($twigExtension);
     }
 
     /**
