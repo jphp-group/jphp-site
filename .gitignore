@@ -2,3 +2,7 @@
 vendor/
 
 package-lock.php.yml
+
+/build/
+
+*.iml

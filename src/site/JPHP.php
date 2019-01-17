@@ -84,7 +84,7 @@ class JPHP
         });
 
         $this->server->get("/**", function (HttpServerRequest $req, HttpServerResponse $res) {
-            echo "new connection to {$req->path()} from {$req->remoteAddress()} \n";
+            //echo "new connection to {$req->path()} from {$req->remoteAddress()} \n";
 
             $res->charsetEncoding("UTF-8");
             $res->header("Server", "JPHP " . JPHP_VERSION);

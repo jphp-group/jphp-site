@@ -16,3 +16,19 @@ sources:
 - src
 includes:
 - index.php
+
+config:
+  ignore:
+    - '/.idea/**'
+    - '*.iml'
+
+app:
+  assets:
+    - 'assets'
+    - 'start.sh'
+    - 'stop.sh'
+    - 'restart.sh'
+
+  build:
+    file-name: 'jphp-site'
+    result: 'tar'
